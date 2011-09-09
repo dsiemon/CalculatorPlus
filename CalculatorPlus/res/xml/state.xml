@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<state>
+	<var>
+		<v id="x" value="3"/>
+	</var>
+	<func>
+		<f id="foo" value="1+2+3"/>
+	</func>
+	<hist>
+		<h exp="1+2" ans="3" />
+	</hist>
+</state>

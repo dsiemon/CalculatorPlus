@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<buttons count="30" rowWidth="5">
+
+	<button count="3"><state display="asin" input="asin(" type="trig"/><state display="flr" input="flr(" type="trig"/><state display="a" input="a" type="char"/></button>
+	<button count="3"><state display="acos" input="acos(" type="trig"/><state display="cl" input="cl(" type="trig"/><state display="b" input="b" type="char"/></button>
+	<button count="3"><state display="atan" input="atan(" type="trig"/><state display="ln" input="ln(" type="trig"/><state display="c" input="c" type="char"/></button>
+	<button count="3"><state display="(" input="(" type="paren"/><state display="log" input="log(" type="trig"/><state display="d" input="d" type="char"/></button>
+	<button count="3"><state display=")" input=")" type="paren"/><state display="%" input="%" type="op"/><state display="e" input="e" type="char"/></button>
+	
+	
+
+	<button count="3"><state display="sin" input="sin(" type="trig"/><state display="$p" input="$p" type="paren"/><state display="f" input="f" type="char"/></button>
+	<button count="3"><state display="cos" input="cos(" type="trig"/><state display="$p1" input="$p1" type="paren"/><state display="g" input="g" type="char"/></button>
+	<button count="3"><state display="tan" input="tan(" type="trig"/><state display="$p2" input="$p2" type="paren"/><state display="h" input="h" type="char"/></button>
+	<button count="3"><state display="√" input="√(" type="op"/><state display="$p3" input="$p3" type="paren"/><state display="i" input="i" type="char"/></button>
+	<button count="3"><state display="^" input="^" type="op"/><state display="$p4" input="$p4" type="paren"/><state display="j" input="j" type="char"/></button>
+	
+	<button count="3"><state display="x" input="x" type="char"/><state display="PI" input="$pi" type="paren"/><state display="k" input="k" type="char"/></button>
+	<button count="3"><state display="7" input="7" type="num"/><state display="e" input="$e" type="paren"/><state display="l" input="l" type="char"/></button>
+	<button count="3"><state display="8" input="8" type="num"/><state display="" input="0" type="trig"/><state display="m" input="m" type="char"/></button>
+	<button count="3"><state display="9" input="9" type="num"/><state display="" input="0" type="trig"/><state display="n" input="n" type="char"/></button>
+	<button count="3"><state display="/" input="/" type="op"/><state display="" input="0" type="trig"/><state display="o" input="o" type="char"/></button>
+
+	<button count="3"><state display="y" input="y" type="char"/><state display="" input="0" type="trig"/><state display="p" input="p" type="char"/></button>
+	<button count="3"><state display="4" input="4" type="num"/><state display="" input="0" type="trig"/><state display="q" input="q" type="char"/></button>
+	<button count="3"><state display="5" input="5" type="num"/><state display="" input="0" type="trig"/><state display="r" input="r" type="char"/></button>
+	<button count="3"><state display="6" input="6" type="num"/><state display="" input="0" type="trig"/><state display="s" input="s" type="char"/></button>
+	<button count="3"><state display="*" input="*" type="op"/><state display="" input="0" type="trig"/><state display="t" input="t" type="char"/></button>
+
+	<button count="3"><state display="z" input="z" type="char"/><state display="" input="0" type="trig"/><state display="u" input="u" type="char"/></button>
+	<button count="3"><state display="1" input="1" type="num"/><state display="" input="0" type="trig"/><state display="v" input="v" type="char"/></button>
+	<button count="3"><state display="2" input="2" type="num"/><state display="" input="0" type="trig"/><state display="w" input="w" type="char"/></button>
+	<button count="3"><state display="3" input="3" type="num"/><state display="" input="0" type="trig"/><state display="x" input="x" type="char"/></button>
+	<button count="3"><state display="-" input="-" type="op"/><state display="" input="0" type="trig"/><state display="y" input="y" type="char"/></button>
+	
+	<button count="3"><state display="," input="," type="paren"/><state display="" input="0" type="trig"/><state display="z" input="z" type="char"/></button>
+	<button count="3"><state display="0" input="0" type="num"/><state display="" input="0" type="trig"/><state display="M1" input="M1" type="trig"/></button>
+	<button count="3"><state display="." input="." type="paren"/><state display="" input="0" type="trig"/><state display="M2" input="M2" type="trig"/></button>
+	<button count="3"><state display="=" input="=" type="op"/><state display="" input="0" type="trig"/><state display="M3" input="M3" type="trig"/></button>
+	<button count="3"><state display="+" input="+" type="op"/><state display="" input="0" type="trig"/><state display="$" input="$" type="char"/></button>
+</buttons>
