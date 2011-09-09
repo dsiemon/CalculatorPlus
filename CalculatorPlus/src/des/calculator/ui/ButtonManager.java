@@ -26,10 +26,10 @@ public class ButtonManager {
     		
 		    xpp.next();
 		    int eventType = xpp.getEventType();
-		    
+		    int stateCount = 0;
 		    int buttonCount = 0;
 		    
-		    int stateCount = 0;
+		    
 		    int currentState = 0;
 		    String[] display = null;
 		    String[] input= null;
@@ -96,7 +96,7 @@ public class ButtonManager {
     		
     		currentButton.setLayoutParams(new LayoutParams(
                       LayoutParams.MATCH_PARENT,
-                      LayoutParams.MATCH_PARENT));
+                      LayoutParams.MATCH_PARENT)); 
     		// add 
     		currentRow.addView(currentButton);
     	} 
