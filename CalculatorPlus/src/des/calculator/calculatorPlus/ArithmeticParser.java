@@ -40,7 +40,7 @@ public class ArithmeticParser extends CalculatorParser {
 	@Override
 	public String evaluateExpression(String expression) {
 		String rtn = "";
-
+		
 		CalculatorPlusParser parser = CalculatorPlusParser.getParser(expression);
 		try{
 			parser.parse();
@@ -71,7 +71,7 @@ public class ArithmeticParser extends CalculatorParser {
 		catch(Exception e){
 			// add a zero in for syntax errors
 			state.setPreviousValues(0.0);
-			rtn = "error";//e.getClass() + ": " + e.getMessage();
+			rtn = "error";//+ e.getClass() + ": " + e.getMessage();
 		}
 		
 		CalculatorState.getInstance().addHistory(expression, rtn);

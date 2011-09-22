@@ -12,7 +12,7 @@
 	<button count="3"><state display="sin" input="sin(" type="trig"/><state display="$p" input="$p" type="paren"/><state display="f" input="f" type="char"/></button>
 	<button count="3"><state display="cos" input="cos(" type="trig"/><state display="$p1" input="$p1" type="paren"/><state display="g" input="g" type="char"/></button>
 	<button count="3"><state display="tan" input="tan(" type="trig"/><state display="$p2" input="$p2" type="paren"/><state display="h" input="h" type="char"/></button>
-	<button count="3"><state display="√" input="√(" type="op"/><state display="$p3" input="$p3" type="paren"/><state display="i" input="i" type="char"/></button>
+	<button count="3"><state display="\u221A" input="\u221A(" type="op"/><state display="$p3" input="$p3" type="paren"/><state display="i" input="i" type="char"/></button>
 	<button count="3"><state display="^" input="^" type="op"/><state display="$p4" input="$p4" type="paren"/><state display="j" input="j" type="char"/></button>
 	
 	<button count="3"><state display="x" input="x" type="char"/><state display="PI" input="$pi" type="paren"/><state display="k" input="k" type="char"/></button>

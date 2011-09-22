@@ -1,0 +1,320 @@
+/* adder.jj Adding up numbers */
+options {
+STATIC = false ;
+OUTPUT_DIRECTORY=".\\src\\des\\calculator\\gen";
+}
+PARSER_BEGIN(CalculatorPlusParser)
+	package com.android.calculator.gen;
+	
+	import com.android.calculator.calculatorPlus.*;
+
+	public class CalculatorPlusParser {
+		
+		public static CalculatorPlusParser getParser(String code){
+				java.io.StringReader sr = new java.io.StringReader( code );
+				java.io.Reader r = new java.io.BufferedReader( sr ); 
+				return new CalculatorPlusParser( r ) ;	
+		}
+		
+		public void parse() throws ParseException, TokenMgrError,NumberFormatException,SyntaxError{
+				this.Start();
+		}
+		
+		public String name = null;
+		public int numParams = 0;
+		public ExpressionNode root = null;
+		public boolean isVar = false;
+		public boolean isFunc = false;
+		
+	}
+PARSER_END(CalculatorPlusParser)
+
+SKIP : {" " | "\t" | "\r" | "\n"}
+TOKEN : { < NUMBER : <DIGITS> | <DIGITS> "." <DIGITS> | <DIGITS> "." | "."<DIGITS> > }
+TOKEN : { < #DIGITS : (["0"-"9"])+ > }
+
+/* parens, commas */
+TOKEN : { < COMMA : ","> }
+TOKEN : { < SET : "="> }
+TOKEN : { < LPAREN : "("> }
+TOKEN : { < RPAREN : ")"> }
+TOKEN : { < SYSTEM : "$"> }
+
+/* unary operators */
+TOKEN : { < SIN : "sin" > }
+TOKEN : { < COS : "cos" > }
+TOKEN : { < TAN : "tan" > }
+TOKEN : { < ATAN : "atan" > }
+TOKEN : { < ASIN : "asin" > }
+TOKEN : { < ACOS : "acos" > }
+TOKEN : { < FLOOR : "flr" > }
+TOKEN : { < CEILING : "cl" > }
+
+TOKEN : { < ABS : "abs" > }
+TOKEN : { < LN : "ln" > }
+TOKEN : { < LOG : "log" > }
+
+/* binary operators */
+TOKEN : { < PLUS : "+" > }
+TOKEN : { < MINUS : "-" > }
+
+TOKEN : { < MULTIPLICATION : "*" > }
+TOKEN : { < DIVISION : "/" > }
+TOKEN : { < MODULUS : "%" > }
+
+TOKEN : { < EXPONENT : "^" > }
+TOKEN : { < ROOT : "\u221A" > }
+
+
+/* variable/func names */
+TOKEN : { < NAME : ["a"-"z"](["a"-"z","0"-"9"])* > }
+
+void Start() throws NumberFormatException,SyntaxError :
+{}
+{
+	Statement()
+	<EOF>
+}
+
+void Statement() throws NumberFormatException,SyntaxError :
+{
+	Token tmpToken;
+}
+{
+	(	
+		LOOKAHEAD(<NAME> ( <SET> | <LPAREN><NUMBER><RPAREN><SET> ))
+		tmpToken = <NAME>
+		{ this.name = tmpToken.image; tmpToken=null; }
+		
+		(
+			<SET>
+			{ isVar=true; }
+			this.root = Expression()
+		|
+			<LPAREN>
+			{ isFunc=true; }
+			tmpToken = <NUMBER>
+				{ this.numParams = (int)Double.parseDouble( tmpToken.image ); tmpToken=null; }
+			<RPAREN>
+			<SET>
+			this.root = Expression()
+		)
+	|
+		this.root = Expression()
+	)
+}
+
+ExpressionNode Expression() throws NumberFormatException,SyntaxError :
+{
+	Token tmpToken;
+	BinaryOperator operator;
+	ExpressionNode left;
+	ExpressionNode right;
+	
+}
+{
+	left = Term()
+	(
+		tmpToken = <PLUS>
+		{ operator = BinaryOperator.binaryFactory(tmpToken.image);  tmpToken=null; }
+		right = Term()
+		{ left = new BinaryNode(left,operator,right); }
+	|
+		tmpToken = <MINUS>
+		{ operator = BinaryOperator.binaryFactory(tmpToken.image);  tmpToken=null; }
+		right = Term()
+		{ left = new BinaryNode(left,operator,right); }
+	)*
+	
+	{ return left; }
+}
+
+ExpressionNode Term() throws NumberFormatException,SyntaxError :
+{
+	Token tmpToken;
+	BinaryOperator operator;
+	ExpressionNode left;
+	ExpressionNode right;
+}
+{
+	left = Exponent()
+	(
+		tmpToken = <MULTIPLICATION>
+		{ operator = BinaryOperator.binaryFactory(tmpToken.image);  tmpToken=null; }
+		right = Exponent()
+		{ left = new BinaryNode(left,operator,right); }
+	|
+		tmpToken = <DIVISION>
+		{ operator = BinaryOperator.binaryFactory(tmpToken.image);  tmpToken=null; }
+		right = Exponent()
+		{ left = new BinaryNode(left,operator,right); }
+	|
+		tmpToken = <MODULUS>
+		{ operator = BinaryOperator.binaryFactory(tmpToken.image);  tmpToken=null; }
+		right = Exponent()
+		{ left = new BinaryNode(left,operator,right); }
+	)*
+	
+	{ return left; }
+}
+ExpressionNode Exponent() throws NumberFormatException,SyntaxError :
+{
+	Token tmpToken;
+	BinaryOperator operator;
+	ExpressionNode left;
+	ExpressionNode right;
+	
+}
+{
+	left = Unary()
+	(
+		tmpToken = <EXPONENT>
+		{ operator = BinaryOperator.binaryFactory(tmpToken.image);  tmpToken=null; }
+		right = Unary()
+		{ left = new BinaryNode(left,operator,right); }
+	|
+		tmpToken = <ROOT>
+		{ operator = BinaryOperator.binaryFactory(tmpToken.image);  tmpToken=null; }
+		right = Unary()
+		{ left = new BinaryNode(left,operator,right); }
+	)*
+	
+	{ return left; }
+}
+ExpressionNode Unary() throws NumberFormatException,SyntaxError :
+{
+	Token tmpToken;
+	UnaryOperator operator;
+	ExpressionNode child;
+	
+}
+{
+	(
+		child = Primary()
+	|
+		tmpToken = <MINUS>
+		{ operator = UnaryOperator.unaryFactory(tmpToken.image);  tmpToken=null; }
+		child = Unary()
+		{ child = new UnaryNode(child, operator); }
+	|
+		tmpToken = <SIN>
+		{ operator = UnaryOperator.unaryFactory(tmpToken.image);  tmpToken=null; }
+		child = Unary()
+		{ child = new UnaryNode(child, operator); }
+	|
+		tmpToken = <COS>
+		{ operator = UnaryOperator.unaryFactory(tmpToken.image);  tmpToken=null; }
+		child = Unary()
+		{ child = new UnaryNode(child, operator); }
+	|
+		tmpToken = <TAN>
+		{ operator = UnaryOperator.unaryFactory(tmpToken.image);  tmpToken=null; }
+		child = Unary()
+		{ child = new UnaryNode(child, operator); }
+	|
+		tmpToken = <ATAN>
+		{ operator = UnaryOperator.unaryFactory(tmpToken.image);  tmpToken=null; }
+		child = Unary()
+		{ child = new UnaryNode(child, operator); }
+	|
+		tmpToken = <ASIN>
+		{ operator = UnaryOperator.unaryFactory(tmpToken.image);  tmpToken=null; }
+		child = Unary()
+		{ child = new UnaryNode(child, operator); }
+	|
+		tmpToken = <ACOS>
+		{ operator = UnaryOperator.unaryFactory(tmpToken.image);  tmpToken=null; }
+		child = Unary()
+		{ child = new UnaryNode(child, operator); }
+	|
+		tmpToken = <FLOOR>
+		{ operator = UnaryOperator.unaryFactory(tmpToken.image);  tmpToken=null; }
+		child = Unary()
+		{ child = new UnaryNode(child, operator); }
+	|
+		tmpToken = <CEILING>
+		{ operator = UnaryOperator.unaryFactory(tmpToken.image);  tmpToken=null; }
+		child = Unary()
+		{ child = new UnaryNode(child, operator); }
+	|
+		tmpToken = <ABS>
+		{ operator = UnaryOperator.unaryFactory(tmpToken.image);  tmpToken=null; }
+		child = Unary()
+		{ child = new UnaryNode(child, operator); }
+	|
+		tmpToken = <LN>
+		{ operator = UnaryOperator.unaryFactory(tmpToken.image);  tmpToken=null; }
+		child = Unary()
+		{ child = new UnaryNode(child, operator); }
+	|
+		tmpToken = <LOG>
+		{ operator = UnaryOperator.unaryFactory(tmpToken.image);  tmpToken=null; }
+		child = Unary()
+		{ child = new UnaryNode(child, operator); }
+	)
+
+	{ return child; }
+}
+ExpressionNode Primary() throws NumberFormatException,SyntaxError :
+{
+	Token tmpToken;
+	ExpressionNode child;
+
+	FunctionNode functionNode;
+	SystemFunctionNode systemFunctionNode;
+	ExpressionNode param;
+	
+}
+{
+	(
+		tmpToken = <NUMBER>
+		{ child = new LeafNode(Double.parseDouble( tmpToken.image ));  tmpToken=null; }
+	|
+		<LPAREN>
+		child = Expression()
+		<RPAREN>
+	|
+		LOOKAHEAD(<NAME> <LPAREN>)
+		tmpToken = <NAME>
+		{ child = functionNode = new FunctionNode(tmpToken.image);  tmpToken=null; 
+		  if(isFunc){ throw new SyntaxError("You may not call user functions inside other functions"); }
+		}
+		<LPAREN>
+		(	
+			<RPAREN>
+		|
+
+				param = Expression()
+				{ functionNode.addParameter(param); }
+				(
+					<COMMA>
+					param = Expression()
+					{ functionNode.addParameter(param); }
+				)*
+			<RPAREN>
+		)
+	|
+		
+		tmpToken = <NAME>
+		{ child = new VariableNode(tmpToken.image);  tmpToken=null; }
+	|
+		LOOKAHEAD(<SYSTEM> <NAME> <LPAREN>)
+		<SYSTEM>
+		tmpToken = <NAME>
+		{ child = systemFunctionNode = new SystemFunctionNode(tmpToken.image);  tmpToken=null; }
+		<LPAREN>
+		param = Expression()
+		{ systemFunctionNode.addParameter(param); }
+		(
+			<COMMA>
+			param = Expression()
+			{ systemFunctionNode.addParameter(param); }
+		)*
+		<RPAREN>
+	|
+		<SYSTEM>
+		tmpToken = <NAME>
+		{ child = new SystemVariableNode(tmpToken.image);  tmpToken=null; }
+	)
+	{ return child; }
+}
