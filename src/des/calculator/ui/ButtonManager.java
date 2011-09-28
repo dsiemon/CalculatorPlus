@@ -17,10 +17,10 @@ package des.calculator.ui;
 
 import org.xmlpull.v1.XmlPullParser;
 
-import com.android.calculator.ui.R;
-import com.android.calculator.ui.R.id;
 
 import des.calculator.calculatorPlus.CalculatorFunction;
+import des.calculator.ui.R;
+import des.calculator.ui.R.id;
 
 import android.content.res.XmlResourceParser;
 import android.widget.Button;

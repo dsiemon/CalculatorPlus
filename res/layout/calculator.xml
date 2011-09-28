@@ -3,10 +3,10 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="fill_parent"
   android:layout_height="fill_parent">
-<TextView android:id="@+id/CalculatorHistory" android:scrollbars="vertical" android:layout_width="wrap_content" android:text="" android:layout_height="85px" android:textSize="20sp" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" android:layout_toLeftOf="@+id/s5" android:inputType="textMultiLine"></TextView>
-<EditText  android:id="@+id/CalculatorInput" android:layout_width="match_parent" android:text="" android:inputType="textNoSuggestions" android:textSize="30sp" android:layout_height="60px" android:layout_below="@+id/CalculatorHistory" android:layout_alignLeft="@+id/CalculatorHistory" android:layout_toLeftOf="@+id/s7" ></EditText>
-<Button android:id="@+id/s5" android:layout_width="wrap_content" android:layout_height="40px" android:text="Up" android:layout_alignParentRight="true" android:layout_alignLeft="@+id/s7" android:layout_alignParentTop="true" ></Button>
-<Button android:id="@+id/s6" android:layout_width="wrap_content" android:layout_height="40px" android:text="Down" android:layout_alignParentRight="true" android:layout_alignLeft="@+id/s7" android:layout_below="@+id/s5" android:layout_alignBottom="@+id/CalculatorHistory"></Button>
+<TextView android:id="@+id/CalculatorHistory" android:scrollbars="vertical" android:layout_width="wrap_content" android:text="" android:layout_height="120px" android:textSize="20sp" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" android:layout_toLeftOf="@+id/s5" android:inputType="textMultiLine"></TextView>
+<EditText  android:id="@+id/CalculatorInput" android:layout_width="match_parent" android:text="" android:inputType="textNoSuggestions" android:textSize="30sp" android:layout_height="75px" android:layout_below="@+id/CalculatorHistory" android:layout_alignLeft="@+id/CalculatorHistory" android:layout_toLeftOf="@+id/s7" ></EditText>
+<Button android:id="@+id/s5" android:layout_width="wrap_content" android:layout_height="60px" android:text="Up" android:layout_alignParentRight="true" android:layout_alignLeft="@+id/s7" android:layout_alignParentTop="true" ></Button>
+<Button android:id="@+id/s6" android:layout_width="wrap_content" android:layout_height="60px" android:text="Down" android:layout_alignParentRight="true" android:layout_alignLeft="@+id/s7" android:layout_below="@+id/s5" android:layout_alignBottom="@+id/CalculatorHistory"></Button>
 <Button android:id="@+id/s7" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Enter" android:layout_below="@+id/CalculatorHistory" android:layout_alignParentRight="true"  android:layout_alignBottom="@+id/CalculatorInput" ></Button>
 
 

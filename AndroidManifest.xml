@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
-      package="com.android.calculator.ui"
+      package="des.calculator.ui"
       android:versionCode="1"
       android:versionName="1.0">
 
-      
+        <uses-sdk android:minSdkVersion="4" 
+              android:targetSdkVersion="9"
+              />
     <application android:icon="@drawable/icon" android:label="@string/app_name" android:debuggable="true">
         <activity android:name="des.calculator.ui.CalculatorActivity"
                   android:label="@string/app_name"
@@ -14,7 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-		<activity android:name=".MenuTabWidget" android:screenOrientation="portrait" >
+		<activity android:name=".MenuTabActivity" android:screenOrientation="portrait" >
+           
+        </activity>
+        <activity android:name=".HistoryActivity" android:screenOrientation="portrait" >
            
         </activity>
     </application>

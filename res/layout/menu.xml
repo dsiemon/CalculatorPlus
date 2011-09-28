@@ -2,7 +2,9 @@
 <TabHost
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="fill_parent"
-  android:layout_height="fill_parent">
+  android:layout_height="fill_parent"
+  android:id="@+id/tabhost"
+  >
   
     <LinearLayout
         android:orientation="vertical"
@@ -17,7 +19,44 @@
             android:id="@android:id/tabcontent"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:padding="5dp" />
+            android:padding="5dp"  >
+            
+                <RelativeLayout
+                    android:id="@+id/historyTab"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" >
+<ScrollView android:id="@+id/scrollHistory" android:layout_height="fill_parent" android:layout_width="fill_parent" android:layout_alignParentRight="true" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" android:layout_above="@+id/clearHistory">
+<TableLayout android:layout_height="fill_parent" android:layout_width="fill_parent"  android:id="@+id/historyTable" android:stretchColumns="*">
+
+</TableLayout>
+</ScrollView>
+                    
+<Button android:id="@+id/clearHistory" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Clear History" android:layout_alignParentRight="true" android:layout_alignParentLeft="true" android:layout_alignParentBottom="true" ></Button>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/functionTab"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" >
+                
+                     <TextView  
+    android:layout_width="fill_parent" 
+    android:layout_height="100px" 
+    android:text="This is functions"
+    android:id="@+id/txt3"
+    />
+<Button android:id="@+id/clearFunctions" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Clear Functions" android:layout_alignParentRight="true" android:layout_alignParentLeft="true" android:layout_alignParentBottom="true" ></Button>
+
+                </RelativeLayout>
+ 
+
+                <RelativeLayout
+                    android:id="@+id/variableTab"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" >
+                    
+                </RelativeLayout>
+ 
+            </FrameLayout>
     </LinearLayout>
 
 </TabHost>

@@ -24,17 +24,15 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import com.android.calculator.ui.R;
-import com.android.calculator.ui.R.id;
-import com.android.calculator.ui.R.layout;
-import com.android.calculator.ui.R.xml;
 
 import des.calculator.calculatorPlus.ArithmeticParser;
 import des.calculator.calculatorPlus.CalculatorParser;
 import des.calculator.calculatorPlus.CalculatorState;
+import des.calculator.ui.R;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
 import android.graphics.PorterDuff;
@@ -101,7 +99,7 @@ public class CalculatorActivity extends Activity {
     protected void onResume() {
         super.onResume();
         
-        
+        inputManager.setHistory();
     }
     public void loadCalculatorState(){
     	try {
@@ -240,15 +238,17 @@ public class CalculatorActivity extends Activity {
     	  });
     }
 
-//    @Override
-//    public boolean onKeyDown(int keyCode, KeyEvent event) {
-//    	boolean result = false;
-//    	if (keyCode == KeyEvent.KEYCODE_BACK) {
-//    		
-//    	} else if (keyCode == KeyEvent.KEYCODE_MENU) {
-//    	
-//    	}
-//    	
-//    	return result;
-//    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    	boolean result = false;
+    	if (keyCode == KeyEvent.KEYCODE_BACK) {
+    		
+    	} else if (keyCode == KeyEvent.KEYCODE_MENU) {
+    		result = true;
+    		
+    		startActivity(new Intent(this, MenuTabActivity.class));
+    	}
+    	
+    	return result;
+    }
 }

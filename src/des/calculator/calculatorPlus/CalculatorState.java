@@ -25,7 +25,7 @@ import java.util.Map.Entry;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlSerializer;
 
-import com.android.calculator.ui.R;
+import des.calculator.ui.R;
 
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
@@ -242,6 +242,24 @@ public class CalculatorState {
 	}
 	public String getAnsHistory(int i){
 		return answerHistory.get(i);
+	}
+	
+	public void clearHistory(){
+		answerHistory.clear();
+		inputHistory.clear();
+		
+		this.systemVariables.put("p9", 0.0);
+		this.systemVariables.put("p8", 0.0);
+		this.systemVariables.put("p7", 0.0);
+		this.systemVariables.put("p6", 0.0);
+		this.systemVariables.put("p5", 0.0);
+		this.systemVariables.put("p4", 0.0);
+		this.systemVariables.put("p3", 0.0);
+		this.systemVariables.put("p2", 0.0);
+		this.systemVariables.put("p1", 0.0);
+		
+		this.systemVariables.put("p0", 0.0);
+		this.systemVariables.put("p", 0.0);
 	}
 	public void addHistory(String exp, String ans){
 		inputHistory.add(exp);
